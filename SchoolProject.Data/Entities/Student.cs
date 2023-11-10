@@ -10,9 +10,11 @@ namespace SchoolProject.Data.Entities
         {
             studentSubjects = new HashSet<StudentSubject>();
         }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StudID { get; set; }
+
         [StringLength(200)]
         public string? NameAr { get; set; }
 

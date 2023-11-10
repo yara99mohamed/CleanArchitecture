@@ -90,10 +90,9 @@ namespace SchoolProject.Service.Implementations
             return _studentRepository.GetTableNoTracking().Include(s => s.Department).AsQueryable();
         }
 
-        public IQueryable<Student> FilterStudentByDepartmentPaginatedQueryable(int departmentId)//StudentQrderingEnum orderingEnum,
+        public IQueryable<Student> FilterStudentByDepartmentPaginatedQueryable(int departmentId)
         {
-            return _studentRepository.GetTableNoTracking().Where(x => x.DID.Equals(departmentId)).Include(s => s.Department).AsQueryable();
-
+            return _studentRepository.GetTableNoTracking().Where(x => x.DID.Equals(departmentId)).AsQueryable();
         }
 
         public IQueryable<Student> FilterStudentPaginatedQueryable(string search)//StudentQrderingEnum orderingEnum,

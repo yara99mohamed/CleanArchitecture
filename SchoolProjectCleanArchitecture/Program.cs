@@ -23,7 +23,10 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 });
 
 #region Dependency Injection
-builder.Services.AddInfrastructureDependencies().AddServiceDependencies().AddCoreDependencies();
+builder.Services.AddInfrastructureDependencies()
+    .AddServiceDependencies()
+    .AddCoreDependencies()
+    .AddServiceRegisteration();
 #endregion
 
 #region Localization
