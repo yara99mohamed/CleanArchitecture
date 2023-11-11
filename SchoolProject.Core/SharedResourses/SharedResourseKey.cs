@@ -9,5 +9,13 @@
         public const string Deleted = "Deleted";
         public const string NotEmpty = "NotEmpty";
         public const string Name = "Name";
+        public const string MaxLengthIs50 = "MaxLengthIs50";
+        public const string MustEmail = "MustEmail";
+        public const string PhoneLengthIs11 = "PhoneLengthIs11";
+        public const string PasswordNotEqualConfirmPassword = "PasswordNotEqualConfirmPassword";
+        public const string EmailIsExist = "EmailIsExist";
+        public const string UserNameIsExist = "UserNameIsExist";
+        public const string FailedToCreateUser = "FailedToCreateUser";
+        public const string AddUserSuccessfully = "AddUserSuccessfully";
     }
 }

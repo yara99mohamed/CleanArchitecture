@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddUserSuccessfully" xml:space="preserve">
+    <value>Add User Successfully</value>
+  </data>
   <data name="Created" xml:space="preserve">
     <value>Created Successfully</value>
   </data>
   <data name="Deleted" xml:space="preserve">
     <value>Deleted Successfully</value>
+  </data>
+  <data name="EmailIsExist" xml:space="preserve">
+    <value>This Email Is Already Exist</value>
+  </data>
+  <data name="FailedToCreateUser" xml:space="preserve">
+    <value>Happened Failed Through Create User</value>
+  </data>
+  <data name="MaxLengthIs50" xml:space="preserve">
+    <value>Max Length For Character Is 50</value>
+  </data>
+  <data name="MustEmail" xml:space="preserve">
+    <value>This Field Must Is Email</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -132,10 +147,19 @@
   <data name="NotFount" xml:space="preserve">
     <value>object not found</value>
   </data>
+  <data name="PasswordNotEqualConfirmPassword" xml:space="preserve">
+    <value>Password Not Equal ConfirmPassword</value>
+  </data>
+  <data name="PhoneLengthIs11" xml:space="preserve">
+    <value>Must Phone Number Is 11 Numbers</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>this is feild is required</value>
   </data>
   <data name="Successed" xml:space="preserve">
     <value>Operation is done</value>
+  </data>
+  <data name="UserNameIsExist" xml:space="preserve">
+    <value>User Name Is Already Exist</value>
   </data>
 </root>
