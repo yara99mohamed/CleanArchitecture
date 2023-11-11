@@ -120,6 +120,9 @@
   <data name="AddUserSuccessfully" xml:space="preserve">
     <value>Add User Successfully</value>
   </data>
+  <data name="ChangePasswordSuccessed" xml:space="preserve">
+    <value>Change Password Successfully</value>
+  </data>
   <data name="Created" xml:space="preserve">
     <value>Created Successfully</value>
   </data>

@@ -9,14 +9,7 @@ namespace SchoolProject.API.Controllers
     [ApiController]
     public class ApplicationUserController : AppControllerBase
     {
-        #region Controllers
-        //[HttpGet(Router.UserRouting.List)]
-        //public async Task<IActionResult> GetUsers()
-        //{
-        //    var resonse = await _mediator.Send(new  ());
-        //    return Ok(resonse);
-        //}
-
+        #region Controllers 
         [HttpGet(Router.ApplicationUserRouting.Paginate)]
         public async Task<IActionResult> GetPaginatedUsers([FromQuery] GetApplicationUserPaginatedListQuery query)
         {
@@ -39,7 +32,14 @@ namespace SchoolProject.API.Controllers
         }
 
         [HttpPut(Router.ApplicationUserRouting.Update)]
-        public async Task<IActionResult> Edit([FromBody] UpdateApplicationUserCommand request)
+        public async Task<IActionResult> Update([FromBody] UpdateApplicationUserCommand request)
+        {
+            var resonse = await _mediator.Send(request);
+            return NewResult(resonse);
+        }
+
+        [HttpPut(Router.ApplicationUserRouting.ChangePassword)]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangeApplicationUserPasswordCommand request)
         {
             var resonse = await _mediator.Send(request);
             return NewResult(resonse);

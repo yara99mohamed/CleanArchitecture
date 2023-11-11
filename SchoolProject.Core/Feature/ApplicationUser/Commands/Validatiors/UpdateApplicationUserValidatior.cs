@@ -22,6 +22,9 @@ namespace SchoolProject.Core.Feature.ApplicationUser.Commands.Validatiors
         #region
         public void ApplyValidatiosRules()
         {
+            RuleFor(x => x.Id).NotEmpty().WithMessage(_stringLocalizer[SharedResourseKey.NotEmpty])
+               .NotNull().WithMessage(_stringLocalizer[SharedResourseKey.Required]);
+
             RuleFor(x => x.FullName)
                 .NotEmpty().WithMessage(_stringLocalizer[SharedResourseKey.NotEmpty])
                 .NotNull().WithMessage(_stringLocalizer[SharedResourseKey.Required])

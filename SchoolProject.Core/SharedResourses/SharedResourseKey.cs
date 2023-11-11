@@ -17,5 +17,6 @@
         public const string UserNameIsExist = "UserNameIsExist";
         public const string FailedToCreateUser = "FailedToCreateUser";
         public const string AddUserSuccessfully = "AddUserSuccessfully";
+        public const string ChangePasswordSuccessed = "ChangePasswordSuccessed";
     }
 }
