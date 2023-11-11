@@ -38,12 +38,12 @@ namespace SchoolProject.API.Controllers
             return NewResult(resonse);
         }
 
-        //[HttpPut(Router.UserRouting.Edit)]
-        //public async Task<IActionResult> Edit([FromBody]   request)
-        //{
-        //    var resonse = await _mediator.Send(request);
-        //    return NewResult(resonse);
-        //}
+        [HttpPut(Router.ApplicationUserRouting.Update)]
+        public async Task<IActionResult> Edit([FromBody] UpdateApplicationUserCommand request)
+        {
+            var resonse = await _mediator.Send(request);
+            return NewResult(resonse);
+        }
 
         //[HttpDelete(Router.UserRouting.Delete)]
         //public async Task<IActionResult> Delete([FromRoute] int id)

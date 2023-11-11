@@ -8,6 +8,7 @@ namespace SchoolProject.Core.Mapping.UserMapping
         {
             AddApplicationUserCommandMapping();
             GetApplicationUserQueryMapping();
+            UpdateApplicationUserCommandMapping();
         }
     }
 }

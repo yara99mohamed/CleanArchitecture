@@ -12,5 +12,10 @@ namespace SchoolProject.Core.Mapping.UserMapping
             CreateMap<AddUserCommand, User>();
             CreateMap<IdentityResult, AddUserResponse>();
         }
+
+        public void UpdateApplicationUserCommandMapping()
+        {
+            CreateMap<UpdateApplicationUserCommand, User>();
+        }
     }
 }

@@ -10,7 +10,8 @@ using SchoolProject.Data.Entities.Identity;
 
 namespace SchoolProject.Core.Feature.ApplicationUser.Commands.Handlers
 {
-    public class AddUserHandler : ResponseHandler, IRequestHandler<AddUserCommand, Response<AddUserResponse>>
+    public class ApplicationUserHandler : ResponseHandler, IRequestHandler<AddUserCommand, Response<AddUserResponse>>
+                                                   , IRequestHandler<UpdateApplicationUserCommand, Response<string>>
     {
         #region Fields
         private readonly IStringLocalizer<SharedResourse> _stringLocalizer;
@@ -19,7 +20,7 @@ namespace SchoolProject.Core.Feature.ApplicationUser.Commands.Handlers
         #endregion
 
         #region Constractors 
-        public AddUserHandler(IStringLocalizer<SharedResourse> stringLocalizer, IMapper mapper, UserManager<User> userManager) : base(stringLocalizer)
+        public ApplicationUserHandler(IStringLocalizer<SharedResourse> stringLocalizer, IMapper mapper, UserManager<User> userManager) : base(stringLocalizer)
         {
             _stringLocalizer = stringLocalizer;
             _userManager = userManager;
@@ -45,7 +46,7 @@ namespace SchoolProject.Core.Feature.ApplicationUser.Commands.Handlers
             // Create User
             var response = await _userManager.CreateAsync(userMapper, request.Password);
 
-            //if happen failed return massage
+            //If Happen Failed Return Massage
             if (!response.Succeeded) return BadRequest<AddUserResponse>(response.Errors.FirstOrDefault().Description);
 
             //mapping from user to AddUserResponse
@@ -54,6 +55,27 @@ namespace SchoolProject.Core.Feature.ApplicationUser.Commands.Handlers
             //User Add Successfully
             return Success(responseMapper, _stringLocalizer[SharedResourseKey.AddUserSuccessfully]);
         }
-        #endregion 
+
+        public async Task<Response<string>> Handle(UpdateApplicationUserCommand request, CancellationToken cancellationToken)
+        {
+            // check if user is exist
+            var user = await _userManager.FindByIdAsync(request.Id.ToString());
+
+            //if user not found
+            if (user == null) return BadRequest<string>(_stringLocalizer[SharedResourseKey.NotFount]);
+
+            //Mapping From  UpdateApplicationUserCommand To User
+            var userMapper = _mapper.Map(request, user);
+
+            //Updated User
+            var response = await _userManager.UpdateAsync(userMapper);
+
+            //If Happen Failed Return Massage
+            if (!response.Succeeded) return BadRequest<string>(response.Errors.FirstOrDefault().Description);
+
+            //User Add Successfully
+            return Success<string>(_stringLocalizer[SharedResourseKey.Successed]);
+        }
+        #endregion
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SchoolProject.Core.Feature.ApplicationUser.Commands.Models
 {
-    public class DeleteUserCommand
+    public class DeleteApplicationUserCommand
     {
     }
 }
