@@ -45,12 +45,12 @@ namespace SchoolProject.API.Controllers
             return NewResult(resonse);
         }
 
-        //[HttpDelete(Router.UserRouting.Delete)]
-        //public async Task<IActionResult> Delete([FromRoute] int id)
-        //{
-        //    var resonse = await _mediator.Send(new DeleteUserCommand(id));
-        //    return NewResult(resonse);
-        //}
+        [HttpDelete(Router.ApplicationUserRouting.Delete)]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var resonse = await _mediator.Send(new DeleteApplicationUserCommand(id));
+            return NewResult(resonse);
+        }
         #endregion
     }
 }
