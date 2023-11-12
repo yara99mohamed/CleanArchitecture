@@ -150,8 +150,14 @@
   <data name="NotFount" xml:space="preserve">
     <value>غير متوفر</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>الرقم السري</value>
+  </data>
   <data name="PasswordNotEqualConfirmPassword" xml:space="preserve">
     <value>تاكيد الرقم السري غير متطابق مع الرقم السري</value>
+  </data>
+  <data name="PasswordOrUserNameNotCorrect" xml:space="preserve">
+    <value>اسم المستخدم او الرقم السري غير صحيح</value>
   </data>
   <data name="PhoneLengthIs11" xml:space="preserve">
     <value>يجب ان يكون رقم الهاتف 11 رقم</value>
@@ -162,7 +168,13 @@
   <data name="Successed" xml:space="preserve">
     <value>تم العملية بنجاح</value>
   </data>
+  <data name="UserName" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
   <data name="UserNameIsExist" xml:space="preserve">
     <value>اسم المستخدم موجود من قبل</value>
+  </data>
+  <data name="UserNameIsNotExist" xml:space="preserve">
+    <value>هذا المستخدم غير موجود</value>
   </data>
 </root>

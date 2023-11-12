@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SchoolProject.API.Bases;
 using SchoolProject.Core.Feature.ApplicationUser.Commands.Models;
 using SchoolProject.Core.Feature.ApplicationUser.Queries.Models;
@@ -7,9 +8,11 @@ using SchoolProject.Data.AppMetaData;
 namespace SchoolProject.API.Controllers
 {
     [ApiController]
+    [Authorize]
     public class ApplicationUserController : AppControllerBase
     {
         #region Controllers 
+        [AllowAnonymous]
         [HttpGet(Router.ApplicationUserRouting.Paginate)]
         public async Task<IActionResult> GetPaginatedUsers([FromQuery] GetApplicationUserPaginatedListQuery query)
         {

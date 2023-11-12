@@ -150,8 +150,14 @@
   <data name="NotFount" xml:space="preserve">
     <value>object not found</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
   <data name="PasswordNotEqualConfirmPassword" xml:space="preserve">
     <value>Password Not Equal ConfirmPassword</value>
+  </data>
+  <data name="PasswordOrUserNameNotCorrect" xml:space="preserve">
+    <value>Password Or User Name Not Correct</value>
   </data>
   <data name="PhoneLengthIs11" xml:space="preserve">
     <value>Must Phone Number Is 11 Numbers</value>
@@ -162,7 +168,13 @@
   <data name="Successed" xml:space="preserve">
     <value>Operation is done</value>
   </data>
+  <data name="UserName" xml:space="preserve">
+    <value>UserName</value>
+  </data>
   <data name="UserNameIsExist" xml:space="preserve">
     <value>User Name Is Already Exist</value>
+  </data>
+  <data name="UserNameIsNotExist" xml:space="preserve">
+    <value>User Name Is Not Exist</value>
   </data>
 </root>
