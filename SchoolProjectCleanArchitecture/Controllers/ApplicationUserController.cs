@@ -8,7 +8,7 @@ using SchoolProject.Data.AppMetaData;
 namespace SchoolProject.API.Controllers
 {
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ApplicationUserController : AppControllerBase
     {
         #region Controllers 

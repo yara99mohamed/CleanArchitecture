@@ -31,7 +31,6 @@ namespace SchoolProject.Core.Feature.ApplicationUser.Commands.Handlers
         }
         #endregion
 
-
         #region Handle Functions
         public async Task<Response<AddUserResponse>> Handle(AddUserCommand request, CancellationToken cancellationToken)
         {

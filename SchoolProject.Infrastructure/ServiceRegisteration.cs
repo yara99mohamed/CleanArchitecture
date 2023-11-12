@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Data.Helper;
 using SchoolProject.Infrastructure.Context;
@@ -62,12 +63,40 @@ namespace SchoolProject.Infrastructure
                 };
             });
 
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("V1",
+            services.AddSwaggerGen(c =>
+            {
+                //c.SwaggerDoc("V1", new OpenApiInfo
+                //{
+                //    Title = "API"
+                //    ,
+                //    Version = "v1"
+                //});
+                c.EnableAnnotations();
+                c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+                {
+                    Description = "Jwt Authorizationheader using the Bearer schema (Example :'Bearer 12345abcdef')",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = JwtBearerDefaults.AuthenticationScheme
+                });
 
-            //       // new OpenApiInfo { Title:"Api" , Ver }) 
-            //});
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                        {
+                            new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme ,
+                                    Id = JwtBearerDefaults.AuthenticationScheme
+                                }
+                            },
+                            Array.Empty<string>()
+                        }
+                });
+            });
+
             return services;
         }
     }
