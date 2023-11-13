@@ -6,5 +6,6 @@ namespace SchoolProject.Service.Abstracts
     public interface IAuthenticationService
     {
         Task<JwtAuthenticationResponse> GetJWTToken(User user);
+        Task<JwtAuthenticationResponse> GetRefreshToken(string accessToken, string refreshToken);
     }
 }

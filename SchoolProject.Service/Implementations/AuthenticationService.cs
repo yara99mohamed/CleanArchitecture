@@ -3,7 +3,6 @@ using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Data.Helper;
 using SchoolProject.Infrastructure.Abstracts;
 using SchoolProject.Service.Abstracts;
-using System.Collections.Concurrent;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -15,7 +14,6 @@ namespace SchoolProject.Service.Implementations
     {
         #region Fields
         private readonly JwtSettings _jwtSettings;
-        private readonly ConcurrentDictionary<string, RefreshToken> _refreshToken;
         private readonly IUserRefreshTokenRepository _userRefreshTokenRepository;
         #endregion
 
@@ -24,27 +22,20 @@ namespace SchoolProject.Service.Implementations
         {
             _jwtSettings = jwtSettings;
             _userRefreshTokenRepository = userRefreshTokenRepository;
-            _refreshToken = new ConcurrentDictionary<string, RefreshToken>();
         }
         #endregion
 
         #region Handle Functions
         public async Task<JwtAuthenticationResponse> GetJWTToken(User user)
         {
-
-            var jwtToken = new JwtSecurityToken(
-               _jwtSettings.Issure,
-                _jwtSettings.Audience,
-                GetClaims(user.UserName, user.Email, user.PhoneNumber),
-                expires: DateTime.UtcNow.AddDays(_jwtSettings.AccessTokenExpireDate),
-                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtSettings.Secret)), SecurityAlgorithms.HmacSha256Signature));
+            var jwtToken = GenerateJWTToken(user);
             var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
             var refreshToken = GetRefreshToken(user.UserName);
             var userRefreshToken = new UserRefreshToken
             {
-                AddTime = DateTime.UtcNow,
-                ExpiryDate = DateTime.UtcNow.AddMonths(_jwtSettings.RefreshTokenExpireDate),
-                IsUsed = false,
+                AddTime = DateTime.Now,
+                ExpiryDate = DateTime.Now.AddMonths(_jwtSettings.RefreshTokenExpireDate),
+                IsUsed = true,
                 IsRevoked = false,
                 JwtId = jwtToken.Id,
                 Token = accessToken,
@@ -75,7 +66,17 @@ namespace SchoolProject.Service.Implementations
             randomNumberGenerate.GetBytes(randomNumber);
             return Convert.ToBase64String(randomNumber);
         }
+        private JwtSecurityToken GenerateJWTToken(User user)
+        {
+            var jwtToken = new JwtSecurityToken(
+              _jwtSettings.Issure,
+               _jwtSettings.Audience,
+               GetClaims(user.UserName, user.Email, user.PhoneNumber),
+               expires: DateTime.UtcNow.AddDays(_jwtSettings.AccessTokenExpireDate),
+               signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtSettings.Secret)), SecurityAlgorithms.HmacSha256Signature));
 
+            return jwtToken;
+        }
         private RefreshToken GetRefreshToken(string userName)
         {
             var refreshToken = new RefreshToken
@@ -84,11 +85,17 @@ namespace SchoolProject.Service.Implementations
                 ExpireAt = DateTime.UtcNow.AddMonths(_jwtSettings.RefreshTokenExpireDate),
                 Token = GenerateRefreshToken()
             };
-            _refreshToken.AddOrUpdate(refreshToken.Token, refreshToken, (s, t) => refreshToken);
             return refreshToken;
         }
 
+        public Task<JwtAuthenticationResponse> GetRefreshToken(string accessToken, string refreshToken)
+        {
+            //Read Token To Get Cliams
 
+            //Get 
+
+
+        }
         #endregion
     }
 }

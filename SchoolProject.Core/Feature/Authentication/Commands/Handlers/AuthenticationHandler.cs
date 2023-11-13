@@ -12,6 +12,7 @@ using SchoolProject.Service.Abstracts;
 namespace SchoolProject.Core.Feature.Authentication.Commands.Handlers
 {
     public class AuthenticationHandler : ResponseHandler, IRequestHandler<SignInCommand, Response<JwtAuthenticationResponse>>
+                                                         , IRequestHandler<RefreshTokenCommand, Response<JwtAuthenticationResponse>>
     {
         #region Fields
         private readonly IStringLocalizer<SharedResourse> _stringLocalizer;
@@ -44,7 +45,7 @@ namespace SchoolProject.Core.Feature.Authentication.Commands.Handlers
             //Try To Sign In
             var signInResponse = _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
 
-            //If Failed Return Password Is Wrong
+            //If Failed Return Password Is Wrong 
             if (!signInResponse.IsCompletedSuccessfully) return BadRequest<JwtAuthenticationResponse>(_stringLocalizer[SharedResourseKey.PasswordOrUserNameNotCorrect]);
 
             //Generate Token
@@ -52,6 +53,11 @@ namespace SchoolProject.Core.Feature.Authentication.Commands.Handlers
             //Return Token
 
             return Success(response);
+        }
+
+        public Task<Response<JwtAuthenticationResponse>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }
