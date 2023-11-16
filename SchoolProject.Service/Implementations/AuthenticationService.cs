@@ -28,8 +28,8 @@ namespace SchoolProject.Service.Implementations
         #region Handle Functions
         public async Task<JwtAuthenticationResponse> GetJWTToken(User user)
         {
-            var jwtToken = GenerateJWTToken(user);
-            var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+            var (jwtToken, accessToken) = GenerateJWTToken(user);
+
             var refreshToken = GetRefreshToken(user.UserName);
             var userRefreshToken = new UserRefreshToken
             {
@@ -50,9 +50,10 @@ namespace SchoolProject.Service.Implementations
             var response = new JwtAuthenticationResponse { AccessToken = accessToken, RefreshToken = refreshToken };
             return response;
         }
-        private List<Claim> GetClaims(string userName, string email, string phoneNumber)
+        private List<Claim> GetClaims(int id, string userName, string email, string phoneNumber)
         {
             var claims = new List<Claim>() {
+            new Claim(nameof(UserClaimModel.Id),id),
             new Claim(nameof(UserClaimModel.UserName),userName),
             new Claim(nameof(UserClaimModel.Email),email),
             new Claim(nameof(UserClaimModel.PhoneNumber),phoneNumber),
@@ -66,16 +67,16 @@ namespace SchoolProject.Service.Implementations
             randomNumberGenerate.GetBytes(randomNumber);
             return Convert.ToBase64String(randomNumber);
         }
-        private JwtSecurityToken GenerateJWTToken(User user)
+        private (JwtSecurityToken, string) GenerateJWTToken(User user)
         {
             var jwtToken = new JwtSecurityToken(
               _jwtSettings.Issure,
                _jwtSettings.Audience,
-               GetClaims(user.UserName, user.Email, user.PhoneNumber),
+               GetClaims(user.Id, user.UserName, user.Email, user.PhoneNumber),
                expires: DateTime.UtcNow.AddDays(_jwtSettings.AccessTokenExpireDate),
                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtSettings.Secret)), SecurityAlgorithms.HmacSha256Signature));
-
-            return jwtToken;
+            var accessToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
+            return (jwtToken, accessToken);
         }
         private RefreshToken GetRefreshToken(string userName)
         {
@@ -91,10 +92,51 @@ namespace SchoolProject.Service.Implementations
         public Task<JwtAuthenticationResponse> GetRefreshToken(string accessToken, string refreshToken)
         {
             //Read Token To Get Cliams
+            var jwtToken = ReadJwtToken(accessToken);
+            if (jwtToken == null || !jwtToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256Signature))
+                throw new SecurityTokenException("Algorithm Is Wrong");
+            //Get User
 
-            //Get 
+            //Validation Token , Refresh Token
 
+            //Generate Refresh Token
 
+        }
+
+        private JwtSecurityToken ReadJwtToken(string accessToken)
+        {
+            if (string.IsNullOrEmpty(accessToken))
+                throw new ArgumentNullException(nameof(accessToken));
+            var handler = new JwtSecurityTokenHandler();
+            var response = handler.ReadJwtToken(accessToken);
+
+            return response;
+        }
+
+        public Task<string> validateToken(string accessToken)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var parameters = new TokenValidationParameters
+            {
+                ValidateIssuer = _jwtSettings.ValidateIssure,
+                ValidIssuers = new[] { _jwtSettings.Issure },
+                ValidateIssuerSigningKey = _jwtSettings.ValidateIssureSigningKey,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtSettings.Secret)),
+                ValidAudience = _jwtSettings.Audience,
+                ValidateAudience = _jwtSettings.ValidateAudience,
+                ValidateLifetime = _jwtSettings.ValidateLifeTime
+            };
+            var validator = handler.ValidateToken(accessToken, parameters, out SecurityToken validatedToken);
+            try
+            {
+                if (validator == null)
+                    throw new SecurityTokenException("Invalide Token");
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
         #endregion
     }

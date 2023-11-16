@@ -7,5 +7,6 @@ namespace SchoolProject.Service.Abstracts
     {
         Task<JwtAuthenticationResponse> GetJWTToken(User user);
         Task<JwtAuthenticationResponse> GetRefreshToken(string accessToken, string refreshToken);
+        Task<string> validateToken(string accessToken);
     }
 }
