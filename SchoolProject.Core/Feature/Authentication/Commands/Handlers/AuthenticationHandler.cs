@@ -55,9 +55,10 @@ namespace SchoolProject.Core.Feature.Authentication.Commands.Handlers
             return Success(response);
         }
 
-        public Task<Response<JwtAuthenticationResponse>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+        public async Task<Response<JwtAuthenticationResponse>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var response = await _authenticationService.GetRefreshToken(request.AccessToken, request.RefreshToken);
+            return Success(response);
         }
         #endregion
     }
