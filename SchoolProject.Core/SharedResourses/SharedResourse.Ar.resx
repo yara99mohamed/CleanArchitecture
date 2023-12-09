@@ -120,6 +120,9 @@
   <data name="AddUserSuccessfully" xml:space="preserve">
     <value>تمت اضافة المستخدم بنجاح</value>
   </data>
+  <data name="AlgorithmIsWrong" xml:space="preserve">
+    <value>هناك خطأ في الخوارزمية المستخدمة في التشفير</value>
+  </data>
   <data name="ChangePasswordSuccessed" xml:space="preserve">
     <value>تم تغير الرقم السري بنجاح</value>
   </data>
@@ -162,11 +165,23 @@
   <data name="PhoneLengthIs11" xml:space="preserve">
     <value>يجب ان يكون رقم الهاتف 11 رقم</value>
   </data>
+  <data name="RefreshTokenIsNotExpired" xml:space="preserve">
+    <value>رمز التنشيط التي استخدمته ليس منتهي</value>
+  </data>
+  <data name="RefreshTokenIsNotFound" xml:space="preserve">
+    <value>رمز التنشيط التي استخدمته انتهي</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>هذا الحقل مطلوب</value>
   </data>
   <data name="Successed" xml:space="preserve">
     <value>تم العملية بنجاح</value>
+  </data>
+  <data name="TokenIsExpired" xml:space="preserve">
+    <value>رمز الوصول التي استخدمته منتهي الصلاحية</value>
+  </data>
+  <data name="TokenIsNotExpired" xml:space="preserve">
+    <value>رمز الوصول التي استخدمته ليس منتهي</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>اسم المستخدم</value>
@@ -176,5 +191,8 @@
   </data>
   <data name="UserNameIsNotExist" xml:space="preserve">
     <value>هذا المستخدم غير موجود</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>المستخدم غير موجود</value>
   </data>
 </root>

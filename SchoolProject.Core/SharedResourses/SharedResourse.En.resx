@@ -120,6 +120,9 @@
   <data name="AddUserSuccessfully" xml:space="preserve">
     <value>Add User Successfully</value>
   </data>
+  <data name="AlgorithmIsWrong" xml:space="preserve">
+    <value>Algorithm Is Wrong</value>
+  </data>
   <data name="ChangePasswordSuccessed" xml:space="preserve">
     <value>Change Password Successfully</value>
   </data>
@@ -162,11 +165,23 @@
   <data name="PhoneLengthIs11" xml:space="preserve">
     <value>Must Phone Number Is 11 Numbers</value>
   </data>
+  <data name="RefreshTokenIsNotExpired" xml:space="preserve">
+    <value>Refresh Token Is Not Expired</value>
+  </data>
+  <data name="RefreshTokenIsNotFound" xml:space="preserve">
+    <value>Refresh Token Is Not Found</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>this is feild is required</value>
   </data>
   <data name="Successed" xml:space="preserve">
     <value>Operation is done</value>
+  </data>
+  <data name="TokenIsExpired" xml:space="preserve">
+    <value>Token Is Expired</value>
+  </data>
+  <data name="TokenIsNotExpired" xml:space="preserve">
+    <value>Token Is Not Expired</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>UserName</value>
@@ -176,5 +191,8 @@
   </data>
   <data name="UserNameIsNotExist" xml:space="preserve">
     <value>User Name Is Not Exist</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User Not Found</value>
   </data>
 </root>

@@ -12,8 +12,8 @@ using SchoolProject.Infrastructure.Context;
 namespace SchoolProject.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20231113064616_AddAullableToSomEcOlumsToTableRefreshToken")]
-    partial class AddAullableToSomEcOlumsToTableRefreshToken
+    [Migration("20231208143351_intial")]
+    partial class intial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

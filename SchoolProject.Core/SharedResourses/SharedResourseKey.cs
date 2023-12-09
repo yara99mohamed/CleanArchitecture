@@ -22,5 +22,11 @@
         public const string Password = "Password";
         public const string UserNameIsNotExist = "UserNameIsNotExist";
         public const string PasswordOrUserNameNotCorrect = "PasswordOrUserNameNotCorrect";
+        public const string AlgorithmIsWrong = "AlgorithmIsWrong";
+        public const string TokenIsNotExpired = "TokenIsNotExpired";
+        public const string RefreshTokenIsNotFound = "RefreshTokenIsNotFound";
+        public const string RefreshTokenIsNotExpired = "RefreshTokenIsNotExpired";
+        public const string UserNotFound = "UserNotFound";
+        public const string TokenIsExpired = "TokenIsExpired";
     }
 }

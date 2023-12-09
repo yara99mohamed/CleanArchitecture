@@ -37,7 +37,7 @@ namespace SchoolProject.Core.Feature.Authentication.Queries.Handlers
             if (response == "NotExpired")
                 return Success(response);
 
-            return BadRequest<string>("Expired");
+            return Unauthorized<string>(_stringLocalizer[SharedResourseKey.TokenIsExpired]);
         }
     }
 }
