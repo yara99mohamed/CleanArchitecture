@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SchoolProject.API.Bases;
 using SchoolProject.Core.Feature.Students.Commands.Requests;
 using SchoolProject.Core.Feature.Students.Queries.Request;
@@ -8,7 +7,7 @@ using SchoolProject.Data.AppMetaData;
 namespace SchoolProject.API.Controllers
 {
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class StudentsController : AppControllerBase
     {
         #region Controllers
