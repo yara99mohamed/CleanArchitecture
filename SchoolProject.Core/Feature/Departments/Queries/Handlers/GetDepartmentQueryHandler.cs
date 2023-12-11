@@ -7,12 +7,14 @@ using SchoolProject.Core.Feature.Departments.Queries.Responses;
 using SchoolProject.Core.SharedResourses;
 using SchoolProject.Core.wrappers;
 using SchoolProject.Data.Entities;
+using SchoolProject.Data.Entities.Procedures;
 using SchoolProject.Service.Abstracts;
 using System.Linq.Expressions;
 
 namespace SchoolProject.Core.Feature.Departments.Queries.Handlers
 {
-    public class GetDepartmentQueryHandler : ResponseHandler, IRequestHandler<GetDepartmentByIdQuery, Response<GetDepartmentResponse>>
+    public class GetDepartmentQueryHandler : ResponseHandler, IRequestHandler<GetDepartmentByIdQuery, Response<GetDepartmentResponse>>,
+                                                              IRequestHandler<GetDepartmentStudentCountByIdQuery, Response<GetDepartmentStudentCountByIdResponse>>
     {
         #region Fields
         private readonly IDepartmentService _departmentService;
@@ -48,6 +50,14 @@ namespace SchoolProject.Core.Feature.Departments.Queries.Handlers
             var paginatedList = await studentQueryable.Select(expression).ToPaginatedListAsync(request.StudentPageNumber, request.StudentPageSize);
             departmentMapping.StudentList = paginatedList;
             return Success(departmentMapping);
+        }
+
+        public async Task<Response<GetDepartmentStudentCountByIdResponse>> Handle(GetDepartmentStudentCountByIdQuery request, CancellationToken cancellationToken)
+        {
+            var parameters = _mapper.Map<DepartmentStudentCountProcedureParameters>(request);
+            var result = await _departmentService.GetDepartmentStudentCountProcedure(parameters);
+            var response = _mapper.Map<GetDepartmentStudentCountByIdResponse>(result);
+            return Success(response);
         }
         #endregion
 

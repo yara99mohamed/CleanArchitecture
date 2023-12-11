@@ -30,6 +30,13 @@ namespace SchoolProject.API.Controllers
             return NewResult(resonse);
         }
 
+        [HttpGet(Router.DepartmentRouting.GetDepartmentStudentCountById)]
+        public async Task<IActionResult> GetDepartmentStudentCount([FromRoute] int id)
+        {
+            var resonse = await _mediator.Send(new GetDepartmentStudentCountByIdQuery() { Id = id });
+            return NewResult(resonse);
+        }
+
         //[HttpPost(Router.StudentRouting.Create)]
         //public async Task<IActionResult> create([FromBody] AddStudentCommandRequest request)
         //{

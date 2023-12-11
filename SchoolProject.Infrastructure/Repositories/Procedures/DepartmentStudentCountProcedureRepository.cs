@@ -31,18 +31,3 @@ namespace SchoolProject.Infrastructure.Repositories.Procedures
         #endregion
     }
 }
-
-//CREATE procedure DepartmentStudentCountProcedure
-//@DID int
-//as
-//begin
-//create table #temp(DID int , DNameAr nvarchar(200),DNameEn nvarchar(200))
-//--, StudentCount int)
-//insert into #temp 
-//	select d.DID, d.InstructorManagerId, d.DNameAr, d.DNameEn
-//	-- , count(StudID) as StudentCount
-//	 from Departments as d left join Students as s on d.DID = s.DID 
-//	 where d.DID = case when @DID = 0 then d.DID else  @DID end
-//	 group by d.DID, d.InstructorManagerId, d.DNameAr, d.DNameEn
-// end
-//select * from #temp
