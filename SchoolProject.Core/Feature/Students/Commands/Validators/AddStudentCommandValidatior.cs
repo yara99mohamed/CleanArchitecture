@@ -31,7 +31,7 @@ namespace SchoolProject.Core.Feature.Students.Commands.Validators
                                 .NotNull().WithMessage("Name Must be not null")
                                 .MaximumLength(10).WithMessage("Name Must be not max length is 10 char");
 
-            RuleFor(s => s.Address).NotEmpty().WithMessage("{PropertyName} Must be not empyt")
+            RuleFor(s => s.Address).NotEmpty().WithMessage("{PropertyName} Must be not empty")
                                .NotNull().WithMessage("{PropertyValue} Must be not null")
                                .MaximumLength(10).WithMessage("{PropertyName} Must be not max length is 10 char");
         }

@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using SchoolProject.Infrastructure.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolProject.Infrastructure.Bases
 {
@@ -39,16 +34,16 @@ namespace SchoolProject.Infrastructure.Bases
 
         public virtual async Task AddRangeAsync(ICollection<T> entities)
         {
-           await _context.Set<T>().AddRangeAsync(entities);
-           await _context.SaveChangesAsync();
+            await _context.Set<T>().AddRangeAsync(entities);
+            await _context.SaveChangesAsync();
         }
 
         public IDbContextTransaction BeginTransaction()
         {
-           return _context.Database.BeginTransaction();
+            return _context.Database.BeginTransaction();
         }
 
-        public void  Commit()
+        public void Commit()
         {
             _context.Database.CommitTransaction();
         }
@@ -70,15 +65,15 @@ namespace SchoolProject.Infrastructure.Bases
 
         public virtual async Task<T> GetByIdAsync(int id)
         {
-          return await  _context.Set<T>().FindAsync(id);           
+            return await _context.Set<T>().FindAsync(id);
         }
 
-        public IQueryable<T>  GetTableAsTracking()
+        public IQueryable<T> GetTableAsTracking()
         {
             return _context.Set<T>().AsQueryable();
         }
 
-        public IQueryable<T>  GetTableNoTracking()
+        public IQueryable<T> GetTableNoTracking()
         {
             return _context.Set<T>().AsNoTracking().AsQueryable();
         }
@@ -90,7 +85,7 @@ namespace SchoolProject.Infrastructure.Bases
 
         public async Task SaveChangesAsync()
         {
-           await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public virtual async Task UpdateAsync(T entity)
@@ -99,12 +94,11 @@ namespace SchoolProject.Infrastructure.Bases
             await _context.SaveChangesAsync();
         }
 
-        public virtual async Task  UpdateRangeAsync(ICollection<T> entities)
+        public virtual async Task UpdateRangeAsync(ICollection<T> entities)
         {
             _context.Set<T>().UpdateRange(entities);
             await _context.SaveChangesAsync();
         }
-
         #endregion
     }
 }
