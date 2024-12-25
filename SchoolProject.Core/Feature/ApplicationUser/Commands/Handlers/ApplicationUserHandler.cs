@@ -54,6 +54,8 @@ namespace SchoolProject.Core.Feature.ApplicationUser.Commands.Handlers
             //mapping from user to AddUserResponse
             var responseMapper = _mapper.Map<AddUserResponse>(response);
 
+            await _userManager.AddToRoleAsync(userMapper, "User");
+
             //User Add Successfully
             return Success(responseMapper, _stringLocalizer[SharedResourseKey.AddUserSuccessfully]);
         }

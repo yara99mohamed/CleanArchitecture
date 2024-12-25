@@ -10,7 +10,7 @@ namespace SchoolProject.Core.Bases
         {
             _stringLocalizer = stringLocalizer;
         }
-        public Response<T> Deleted<T>(string Message = null)
+        public Response<T> Deleted<T>(string? Message = null)
         {
             return new Response<T>()
             {
@@ -20,7 +20,7 @@ namespace SchoolProject.Core.Bases
 
             };
         }
-        public Response<T> Success<T>(T entity, object Meta = null)
+        public Response<T> Success<T>(T entity, object? Meta = null)
         {
             return new Response<T>()
             {
@@ -31,7 +31,7 @@ namespace SchoolProject.Core.Bases
                 Meta = Meta
             };
         }
-        public Response<T> Unauthorized<T>(string Message = null)
+        public Response<T> Unauthorized<T>(string? Message = null)
         {
             return new Response<T>()
             {
@@ -40,7 +40,7 @@ namespace SchoolProject.Core.Bases
                 Message = Message == null ? "UnAuthorized" : Message
             };
         }
-        public Response<T> UnprocessableEntity<T>(string Message = null)
+        public Response<T> UnprocessableEntity<T>(string? Message = null)
         {
             return new Response<T>()
             {
@@ -49,7 +49,7 @@ namespace SchoolProject.Core.Bases
                 Message = Message == null ? "Unprocessable Entity" : Message
             };
         }
-        public Response<T> BadRequest<T>(string Message = null)
+        public Response<T> BadRequest<T>(string? Message = null)
         {
             return new Response<T>()
             {
@@ -58,7 +58,7 @@ namespace SchoolProject.Core.Bases
                 Message = Message == null ? "Bad Request" : Message
             };
         }
-        public Response<T> NotFound<T>(string message = null)
+        public Response<T> NotFound<T>(string? message = null)
         {
             return new Response<T>()
             {
@@ -67,7 +67,7 @@ namespace SchoolProject.Core.Bases
                 Message = message == null ? "Not Found" : message
             };
         }
-        public Response<T> Created<T>(T entity, object Meta = null)
+        public Response<T> Created<T>(T entity, object? Meta = null)
         {
             return new Response<T>()
             {

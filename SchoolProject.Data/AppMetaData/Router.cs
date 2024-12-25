@@ -46,5 +46,13 @@
             public const string RefreshToken = Prefix + "Refresh-Token";
             public const string ValidateToken = Prefix + "Validate-Token";
         }
+
+        public static class AuthorizationRouting
+        {
+            public const string Prefix = rule + "Authorization/";
+            public const string SignIn = Prefix + "SignIn";
+            public const string Create = Prefix + "Create";
+            public const string Edit = Prefix + "Edit";
+        }
     }
 }

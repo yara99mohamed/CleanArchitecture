@@ -16,7 +16,7 @@ namespace SchoolProject.Infrastructure
         public static IServiceCollection AddServiceRegisteration(this IServiceCollection services, IConfiguration configuration)
         {
 
-            services.AddIdentity<User, IdentityRole<int>>(option =>
+            services.AddIdentity<User, Role>(option =>
             {
                 option.SignIn.RequireConfirmedEmail = true;
 
@@ -83,17 +83,17 @@ namespace SchoolProject.Infrastructure
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
+                    {
+                        new OpenApiSecurityScheme
                         {
-                            new OpenApiSecurityScheme
+                            Reference = new OpenApiReference
                             {
-                                Reference = new OpenApiReference
-                                {
-                                    Type = ReferenceType.SecurityScheme ,
-                                    Id = JwtBearerDefaults.AuthenticationScheme
-                                }
-                            },
-                            Array.Empty<string>()
-                        }
+                                Type = ReferenceType.SecurityScheme ,
+                                Id = JwtBearerDefaults.AuthenticationScheme
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
                 });
             });
 
