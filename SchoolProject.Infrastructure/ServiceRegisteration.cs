@@ -34,7 +34,7 @@ namespace SchoolProject.Infrastructure
                 option.Lockout.MaxFailedAccessAttempts = 5;
 
                 //user settings
-                option.User.AllowedUserNameCharacters = "abcdefghjklmnopqrstuvwxyzQWERTYUIOPLKJHGFDSAZXCVBNM0123456789-_.=+#@!$%^&*(){}";
+                option.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzQWERTYUIOPLKJHGFDSAZXCVBNM0123456789-_.=+#@!$%^&*(){}";
                 option.User.RequireUniqueEmail = true;
             }).AddEntityFrameworkStores<ApplicationDBContext>().AddDefaultTokenProviders();
 

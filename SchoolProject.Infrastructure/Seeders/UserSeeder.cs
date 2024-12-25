@@ -13,7 +13,7 @@ namespace SchoolProject.Infrastructure.Seeders
             {
                 var defaultUser = new User()
                 {
-                    UserName = "Admin",
+                    UserName = "admin",
                     Email = "admin@gmail.com",
                     FullName = "School Project",
                     Country = "Egypt",
@@ -22,7 +22,7 @@ namespace SchoolProject.Infrastructure.Seeders
                     EmailConfirmed = true,
                     PhoneNumberConfirmed = true,
                 };
-                await userManager.CreateAsync(defaultUser, "123");
+                await userManager.CreateAsync(defaultUser, "Admin@123");
                 await userManager.AddToRoleAsync(defaultUser, "Admin");
             }
         }
