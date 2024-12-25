@@ -7,7 +7,7 @@ using SchoolProject.Data.AppMetaData;
 namespace SchoolProject.API.Controllers
 {
     [ApiController]
-    [Authorize(Roles = "User")]
+    [Authorize(Roles = "Admin")]
     public class AuthorizationController : AppControllerBase
     {
         [HttpPost(Router.AuthorizationRouting.Create)]
