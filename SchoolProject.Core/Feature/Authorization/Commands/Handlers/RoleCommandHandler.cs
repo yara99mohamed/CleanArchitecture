@@ -10,7 +10,8 @@ using SchoolProject.Service.Abstracts;
 namespace SchoolProject.Core.Feature.Authorization.Commands.Handlers
 {
     public class RoleCommandHandler : ResponseHandler, IRequestHandler<AddRoleCommand, Response<string>>
-        , IRequestHandler<EditRoleCommand, Response<string>>
+                                                     , IRequestHandler<EditRoleCommand, Response<string>>
+                                                     , IRequestHandler<DeleteRoleCommand, Response<string>>
     {
         #region Fields
         private readonly IStringLocalizer<SharedResourse> _stringLocalizer;
@@ -40,6 +41,15 @@ namespace SchoolProject.Core.Feature.Authorization.Commands.Handlers
             var result = await _authorizationService.EditRoleAsync(request);
             if (result == "NotFound") return NotFound<string>("Role Not Found");
             else if (result == "Success") return Success<string>("Role Edit Successfuly");
+            else return BadRequest<string>(result);
+        }
+
+        public async Task<Response<string>> Handle(DeleteRoleCommand request, CancellationToken cancellationToken)
+        {
+            var result = await _authorizationService.DeleteRoleAsync(request.RoleId);
+            if (result == "NotFound") return NotFound<string>("Role Not Found");
+            else if (result == "Used") return BadRequest<string>("Role Is Used");
+            else if (result == "Success") return Success<string>("Role Delete Successfuly");
             else return BadRequest<string>(result);
         }
         #endregion

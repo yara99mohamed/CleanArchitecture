@@ -10,12 +10,14 @@ namespace SchoolProject.Service.Implementations
     {
         #region Fields
         private readonly RoleManager<Role> _roleManager;
+        private readonly UserManager<User> _userManager;
         #endregion
 
         #region Constractors
-        public AuthorizationService(RoleManager<Role> roleManager)
+        public AuthorizationService(RoleManager<Role> roleManager, UserManager<User> userManager)
         {
             _roleManager = roleManager;
+            _userManager = userManager;
         }
         #endregion
 
@@ -39,8 +41,23 @@ namespace SchoolProject.Service.Implementations
             if (result.Succeeded) return "Success";
             else return "Faild " + string.Join("- ", result.Errors);
         }
+        public async Task<string> DeleteRoleAsync(int roleId)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId.ToString());
+            if (role == null) return "NotFound";
 
-        public async Task<bool> IsRoleExsitAsync(string roleName)
+            var users = await _userManager.GetUsersInRoleAsync(role.Name);
+            if (users != null && users.Count > 0) return "Used";
+
+            var result = await _roleManager.DeleteAsync(role);
+            if (result.Succeeded) return "Success";
+            else return "Faild " + string.Join("- ", result.Errors);
+        }
+        public async Task<bool> IsRoleExsitByIdAsync(int roleId)
+        {
+            return await _roleManager.FindByIdAsync(roleId.ToString()) != null;
+        }
+        public async Task<bool> IsRoleExsitByNameAsync(string roleName)
         {
             return await _roleManager.RoleExistsAsync(roleName);
         }

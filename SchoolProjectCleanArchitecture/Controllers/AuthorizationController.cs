@@ -22,5 +22,12 @@ namespace SchoolProject.API.Controllers
             var resonse = await _mediator.Send(request);
             return NewResult(resonse);
         }
+
+        [HttpDelete(Router.AuthorizationRouting.Delete)]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            var resonse = await _mediator.Send(new DeleteRoleCommand(id));
+            return NewResult(resonse);
+        }
     }
 }

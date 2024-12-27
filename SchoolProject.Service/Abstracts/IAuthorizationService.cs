@@ -6,6 +6,8 @@ namespace SchoolProject.Service.Abstracts
     {
         Task<string> AddRoleAsync(string roleName);
         Task<string> EditRoleAsync(EditRoleViewData data);
-        Task<bool> IsRoleExsitAsync(string roleName);
+        Task<string> DeleteRoleAsync(int roleId);
+        Task<bool> IsRoleExsitByNameAsync(string roleName);
+        Task<bool> IsRoleExsitByIdAsync(int roleId);
     }
 }

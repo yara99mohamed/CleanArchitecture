@@ -29,6 +29,7 @@
         public const string UserNotFound = "UserNotFound";
         public const string TokenIsExpired = "TokenIsExpired";
         public const string IsExist = "IsExist";
+        public const string IsNotExist = "IsNotExist";
         public const string NotNull = "NotNull";
     }
 }
