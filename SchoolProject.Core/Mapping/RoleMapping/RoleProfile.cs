@@ -7,6 +7,7 @@ namespace SchoolProject.Core.Mapping.RoleMapping
         public RoleProfile()
         {
             GetRoleQueryMapping();
+            GetRolesByUserQueryMapping();
         }
     }
 }

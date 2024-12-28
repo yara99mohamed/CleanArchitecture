@@ -31,5 +31,6 @@
         public const string IsExist = "IsExist";
         public const string IsNotExist = "IsNotExist";
         public const string NotNull = "NotNull";
+        public const string UserIsNotExist = "UserIsNotExist";
     }
 }

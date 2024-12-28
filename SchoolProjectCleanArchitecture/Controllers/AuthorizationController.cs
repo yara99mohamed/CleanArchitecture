@@ -24,6 +24,14 @@ namespace SchoolProject.API.Controllers
             return NewResult(resonse);
         }
 
+
+        [HttpGet(Router.AuthorizationRouting.RolesByUser)]
+        public async Task<IActionResult> GetRolesbyUserId([FromRoute] int id)
+        {
+            var resonse = await _mediator.Send(new GetRolesByUserQuery(id));
+            return NewResult(resonse);
+        }
+
         [HttpPost(Router.AuthorizationRouting.Create)]
         public async Task<IActionResult> Create([FromBody] AddRoleCommand request)
         {
