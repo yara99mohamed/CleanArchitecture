@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Data.ViewData;
 using SchoolProject.Service.Abstracts;
@@ -22,6 +23,18 @@ namespace SchoolProject.Service.Implementations
         #endregion
 
         #region Functions
+        public async Task<Role?> GetRoleByIdAsync(int roleId)
+        {
+            var role = await _roleManager.FindByIdAsync(roleId.ToString());
+            return role;
+        }
+
+        public async Task<List<Role>?> GetRolesAsync()
+        {
+            var roles = await _roleManager.Roles.ToListAsync();
+            return roles;
+        }
+
         public async Task<string> AddRoleAsync(string roleName)
         {
             var identityRole = new Role() { Name = roleName };
@@ -41,6 +54,7 @@ namespace SchoolProject.Service.Implementations
             if (result.Succeeded) return "Success";
             else return "Faild " + string.Join("- ", result.Errors);
         }
+
         public async Task<string> DeleteRoleAsync(int roleId)
         {
             var role = await _roleManager.FindByIdAsync(roleId.ToString());
@@ -53,10 +67,12 @@ namespace SchoolProject.Service.Implementations
             if (result.Succeeded) return "Success";
             else return "Faild " + string.Join("- ", result.Errors);
         }
+
         public async Task<bool> IsRoleExsitByIdAsync(int roleId)
         {
             return await _roleManager.FindByIdAsync(roleId.ToString()) != null;
         }
+
         public async Task<bool> IsRoleExsitByNameAsync(string roleName)
         {
             return await _roleManager.RoleExistsAsync(roleName);

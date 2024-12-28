@@ -50,6 +50,7 @@
         public static class AuthorizationRouting
         {
             public const string Prefix = rule + "Authorization/Role/";
+            public const string GetById = Prefix + SingleRoute;
             public const string List = Prefix + "List";
             public const string Create = Prefix + "Create";
             public const string Edit = Prefix + "Edit";

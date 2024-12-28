@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolProject.API.Bases;
 using SchoolProject.Core.Feature.Authorization.Commands.Models;
+using SchoolProject.Core.Feature.Authorization.Queries.Models;
 using SchoolProject.Data.AppMetaData;
 
 namespace SchoolProject.API.Controllers
@@ -9,8 +10,22 @@ namespace SchoolProject.API.Controllers
     //[Authorize(Roles = "Admin")]
     public class AuthorizationController : AppControllerBase
     {
+        [HttpGet(Router.AuthorizationRouting.GetById)]
+        public async Task<IActionResult> GetRole([FromRoute] int id)
+        {
+            var resonse = await _mediator.Send(new GetRoleByIdQuery(id));
+            return NewResult(resonse);
+        }
+
+        [HttpGet(Router.AuthorizationRouting.List)]
+        public async Task<IActionResult> GetRoles()
+        {
+            var resonse = await _mediator.Send(new GetRoleListQuery());
+            return NewResult(resonse);
+        }
+
         [HttpPost(Router.AuthorizationRouting.Create)]
-        public async Task<IActionResult> create([FromBody] AddRoleCommand request)
+        public async Task<IActionResult> Create([FromBody] AddRoleCommand request)
         {
             var resonse = await _mediator.Send(request);
             return NewResult(resonse);
