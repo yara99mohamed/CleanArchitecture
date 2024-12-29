@@ -1,8 +1,14 @@
-﻿namespace SchoolProject.Core.Mapping.RoleMapping
+﻿using SchoolProject.Core.Feature.Authorization.Commands.Models;
+using SchoolProject.Data.ViewData;
+
+namespace SchoolProject.Core.Mapping.RoleMapping
 {
     public partial class RoleProfile
     {
 
-        //RoleCommandMapping
+        public void UpdateRolesByUserCommandMapping()
+        {
+            CreateMap<UpdateRolesUserCommand, RolesByUserViewData>();
+        }
     }
 }

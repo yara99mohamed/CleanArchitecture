@@ -12,8 +12,8 @@ namespace SchoolProject.Core.Mapping.RoleMapping
 
         public void GetRolesByUserQueryMapping()
         {
-            CreateMap<GetRolesByUserViewData, GetRolesByUserResponse>();
-            CreateMap<UserRolesViewData, Role>();
+            CreateMap<RolesByUserViewData, GetRolesByUserResponse>();
+            CreateMap<RoleViewData, Role>().ReverseMap();
         }
     }
 }

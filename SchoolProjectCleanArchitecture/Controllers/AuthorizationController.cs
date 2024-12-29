@@ -24,14 +24,6 @@ namespace SchoolProject.API.Controllers
             return NewResult(resonse);
         }
 
-
-        [HttpGet(Router.AuthorizationRouting.RolesByUser)]
-        public async Task<IActionResult> GetRolesbyUserId([FromRoute] int id)
-        {
-            var resonse = await _mediator.Send(new GetRolesByUserQuery(id));
-            return NewResult(resonse);
-        }
-
         [HttpPost(Router.AuthorizationRouting.Create)]
         public async Task<IActionResult> Create([FromBody] AddRoleCommand request)
         {
@@ -50,6 +42,20 @@ namespace SchoolProject.API.Controllers
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var resonse = await _mediator.Send(new DeleteRoleCommand(id));
+            return NewResult(resonse);
+        }
+
+        [HttpGet(Router.AuthorizationRouting.RolesByUser)]
+        public async Task<IActionResult> GetRolesbyUserId([FromRoute] int id)
+        {
+            var resonse = await _mediator.Send(new GetRolesByUserQuery(id));
+            return NewResult(resonse);
+        }
+
+        [HttpPut(Router.AuthorizationRouting.UpdateRolesByUser)]
+        public async Task<IActionResult> UpdateRolesbyUserId([FromBody] UpdateRolesUserCommand command)
+        {
+            var resonse = await _mediator.Send(command);
             return NewResult(resonse);
         }
     }

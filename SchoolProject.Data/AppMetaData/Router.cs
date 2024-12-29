@@ -53,6 +53,7 @@
             public const string GetById = Prefix + SingleRoute;
             public const string List = Prefix + "List";
             public const string RolesByUser = Prefix + "Roles-By-User/" + SingleRoute;
+            public const string UpdateRolesByUser = Prefix + "Update-Roles-By-User/";
             public const string Create = Prefix + "Create";
             public const string Edit = Prefix + "Edit";
             public const string Delete = Prefix + "Delete/" + SingleRoute;
