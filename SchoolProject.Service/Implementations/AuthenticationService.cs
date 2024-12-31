@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SchoolProject.Data.Entities.Identity;
 using SchoolProject.Data.Helper;
+using SchoolProject.Data.Results;
 using SchoolProject.Infrastructure.Abstracts;
 using SchoolProject.Service.Abstracts;
 using System.IdentityModel.Tokens.Jwt;
@@ -30,7 +31,7 @@ namespace SchoolProject.Service.Implementations
         #endregion
 
         #region Handle Functions
-        public async Task<JwtAuthenticationResponse> GetJWTToken(User user)
+        public async Task<JwtAuthenticationResult> GetJWTToken(User user)
         {
             var (jwtToken, accessToken) = await GenerateJWTToken(user);
 
@@ -51,7 +52,7 @@ namespace SchoolProject.Service.Implementations
             //// 
 
             //}
-            var response = new JwtAuthenticationResponse { AccessToken = accessToken, RefreshToken = refreshToken };
+            var response = new JwtAuthenticationResult { AccessToken = accessToken, RefreshToken = refreshToken };
             return response;
         }
 
@@ -103,7 +104,7 @@ namespace SchoolProject.Service.Implementations
             return refreshToken;
         }
 
-        public async Task<JwtAuthenticationResponse> GetRefreshToken(User user, DateTime? expireDate, string refreshToken)
+        public async Task<JwtAuthenticationResult> GetRefreshToken(User user, DateTime? expireDate, string refreshToken)
         {
             //Generate New Token
             var (jwtSecurityToken, newAccessToken) = await GenerateJWTToken(user);
@@ -111,7 +112,7 @@ namespace SchoolProject.Service.Implementations
             refreshTokenResult.UserName = user.UserName;
             refreshTokenResult.ExpireAt = (DateTime)expireDate;
             refreshTokenResult.Token = refreshToken;
-            return new JwtAuthenticationResponse { AccessToken = newAccessToken, RefreshToken = refreshTokenResult };
+            return new JwtAuthenticationResult { AccessToken = newAccessToken, RefreshToken = refreshTokenResult };
         }
 
         public async Task<(string, DateTime?)> ValidateDetails(JwtSecurityToken jwtToken, string accessToken, string refreshToken)

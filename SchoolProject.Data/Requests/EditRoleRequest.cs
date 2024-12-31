@@ -1,6 +1,6 @@
-﻿namespace SchoolProject.Data.ViewData
+﻿namespace SchoolProject.Data.Requests
 {
-    public class EditRoleViewData
+    public class EditRoleRequest
     {
         public int Id { get; set; }
         public required string Name { get; set; }

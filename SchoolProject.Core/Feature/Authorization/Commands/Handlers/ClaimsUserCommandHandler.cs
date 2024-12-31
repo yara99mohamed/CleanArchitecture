@@ -9,7 +9,7 @@ using SchoolProject.Service.Abstracts;
 
 namespace SchoolProject.Core.Feature.Authorization.Commands.Handlers
 {
-    public class RolesUserCommandHandler : ResponseHandler, IRequestHandler<UpdateRolesUserCommand, Response<string>>
+    public class ClaimsUserCommandHandler : ResponseHandler, IRequestHandler<UpdateClaimsUserCommand, Response<string>>
     {
         #region Fields
         private readonly IStringLocalizer<SharedResourse> _stringLocalizer;
@@ -18,7 +18,7 @@ namespace SchoolProject.Core.Feature.Authorization.Commands.Handlers
         #endregion
 
         #region Constractors
-        public RolesUserCommandHandler(IStringLocalizer<SharedResourse> stringLocalizer, IAuthorizationService authorizationService, IMapper mapper) : base(stringLocalizer)
+        public ClaimsUserCommandHandler(IStringLocalizer<SharedResourse> stringLocalizer, IAuthorizationService authorizationService, IMapper mapper) : base(stringLocalizer)
         {
             _stringLocalizer = stringLocalizer;
             _authorizationService = authorizationService;
@@ -26,13 +26,13 @@ namespace SchoolProject.Core.Feature.Authorization.Commands.Handlers
         }
         #endregion
 
-        #region Handlers
-        public async Task<Response<string>> Handle(UpdateRolesUserCommand request, CancellationToken cancellationToken)
+        #region Handlers 
+        public async Task<Response<string>> Handle(UpdateClaimsUserCommand request, CancellationToken cancellationToken)
         {
-            var requestMapper = _mapper.Map<RolesByUserRequest>(request);
-            var result = await _authorizationService.UpdateRolesByUserId(requestMapper);
+            var requestMapper = _mapper.Map<EditClaimsByUserRequest>(request);
+            var result = await _authorizationService.UpdateClaimsByUserId(requestMapper);
             if (result == "NotFound") return NotFound<string>("User Is Not Exsit");
-            else if (result == "Success") return Success<string>("Roles Added For User Successfuly");
+            else if (result == "Success") return Success<string>("Claims Added For User Successfuly");
             else return BadRequest<string>(result);
         }
         #endregion

@@ -1,5 +1,5 @@
 ﻿using SchoolProject.Core.Feature.Authorization.Commands.Models;
-using SchoolProject.Data.ViewData;
+using SchoolProject.Data.Requests;
 
 namespace SchoolProject.Core.Mapping.RoleMapping
 {
@@ -8,7 +8,12 @@ namespace SchoolProject.Core.Mapping.RoleMapping
 
         public void UpdateRolesByUserCommandMapping()
         {
-            CreateMap<UpdateRolesUserCommand, RolesByUserViewData>();
+            CreateMap<UpdateRolesUserCommand, RolesByUserRequest>();
+        }
+
+        public void UpdateClaimsByUserCommandMapping()
+        {
+            CreateMap<UpdateClaimsUserCommand, EditClaimsByUserRequest>();
         }
     }
 }

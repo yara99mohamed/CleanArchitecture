@@ -1,5 +1,5 @@
 ﻿using SchoolProject.Core.Feature.Authorization.Queries.Responses;
-using SchoolProject.Data.ViewData;
+using SchoolProject.Data.Requests;
 
 namespace SchoolProject.Core.Mapping.RoleMapping
 {
@@ -12,8 +12,8 @@ namespace SchoolProject.Core.Mapping.RoleMapping
 
         public void GetRolesByUserQueryMapping()
         {
-            CreateMap<RolesByUserViewData, GetRolesByUserResponse>();
-            CreateMap<RoleViewData, Role>().ReverseMap();
+            CreateMap<RolesByUserRequest, GetRolesByUserResponse>();
+            CreateMap<RoleRequest, Role>().ReverseMap();
         }
     }
 }
